@@ -11,8 +11,6 @@
             --text-color: #333;
             --border-color: #d1d9e6;
             --header-bg: #34495e;
-            --alert-bg: #fffbe6;
-            --alert-border: #ffe58f;
         }
 
         body {
@@ -34,6 +32,7 @@
             overflow-y: auto;
             padding-top: 20px;
             transition: transform 0.3s ease;
+            z-index: 1000;
         }
 
         .sidebar h2 {
@@ -68,6 +67,7 @@
             margin-left: 250px;
             padding: 20px 40px;
             width: calc(100% - 250px);
+            box-sizing: border-box;
         }
 
         #main-header {
@@ -121,17 +121,31 @@
             font-size: 0.9em;
             color: #555;
         }
+        
+        .citation-note {
+             display: block;
+            text-align: left;
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 0.9em;
+            color: #555;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            table-layout: fixed;
         }
 
         th, td {
             border: 1px solid var(--border-color);
             padding: 12px 15px;
             text-align: left;
+            word-wrap: break-word;
         }
 
         th {
@@ -141,20 +155,6 @@
         
         tbody tr:nth-child(even) {
             background-color: #f9f9f9;
-        }
-
-        .alert-box {
-            background-color: var(--alert-bg);
-            border: 1px solid var(--alert-border);
-            border-left: 5px solid #ffb300;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-        .alert-box h4 {
-            margin-top: 0;
-            color: #c58d00;
-            border-bottom: none;
         }
 
         .menu-toggle {
@@ -175,7 +175,6 @@
         @media (max-width: 992px) {
             .sidebar {
                 transform: translateX(-100%);
-                z-index: 1000;
             }
             .sidebar.active {
                 transform: translateX(0);
@@ -199,11 +198,11 @@
         <h2>ハリネズミ健康管理資料</h2>
         <nav>
             <ul>
-                <li><a href="#introduction">はじめに</a></li>
-                <li><a href="#diabetes">1. 糖尿病</a></li>
-                <li><a href="#nutrition">2. 栄養学と食事療法</a></li>
-                <li><a href="#blood-test">3. 血液検査</a></li>
-                <li><a href="#urinalysis">4. 尿検査</a></li>
+                <li><a href="#introduction" class="nav-link">はじめに</a></li>
+                <li><a href="#diabetes" class="nav-link">1. 糖尿病</a></li>
+                <li><a href="#nutrition" class="nav-link">2. 栄養学と食事療法</a></li>
+                <li><a href="#blood-test" class="nav-link">3. 血液検査</a></li>
+                <li><a href="#urinalysis" class="nav-link">4. 尿検査</a></li>
             </ul>
         </nav>
     </div>
@@ -216,12 +215,8 @@
 
         <section id="introduction">
             <h2>はじめに</h2>
-            <p>この資料は、ハリネズミの飼育者および獣医療関係者向けに、糖尿病、栄養学、主要な臨床検査（血液検査・尿検査）に関する学術的・専門的情報をまとめたものです。</p>
+            <p>この資料は、ハリネズミの診療に際し、糖尿病、栄養学、主要な臨床検査（血液検査・尿検査）に関する学術的・専門的情報を参照用にまとめたものです。</p>
             <p>各項目には可能な限り論文や専門機関の報告に基づく情報を記載し、引用元を明示しています。</p>
-            <div class="alert-box">
-                <h4>【極めて重要な注意点】</h4>
-                <p>本資料に記載されている情報は、あくまで参考情報であり、個々のハリネズミの診断や治療に代わるものではありません。愛するハリネズミの健康に関するいかなる判断や治療も、必ず専門の獣医師との相談の上で行ってください。</p>
-            </div>
         </section>
 
         <section id="diabetes">
@@ -310,17 +305,15 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="citation-note">
+                <strong>引用元:</strong> 上記の食事内容の指針は、Merck Veterinary ManualやVCA Animal Hospitalsなどの専門機関が公開しているハリネズミの一般的な栄養管理情報に基づき、糖尿病管理の観点を加えてまとめたものです。特定の単一文献からの直接引用ではありません。
+            </div>
         </section>
 
         <section id="blood-test">
             <h2>3. 血液検査</h2>
             <p>血液検査は、全身の健康状態や内臓機能を知るための重要な診断ツールです。</p>
             
-            <div class="alert-box">
-                <h4>参考基準値に関する注意</h4>
-                <p>ここに記載する基準値は複数の文献からの抜粋であり、あくまで参考です。検査機関、測定方法、個体差により数値は変動します。必ず獣医師による総合的な判断が必要です。</p>
-            </div>
-
             <h3>全血球計算 (CBC)</h3>
             <p>貧血や感染、炎症の有無などを評価します。</p>
             <table>
@@ -369,7 +362,7 @@
                     </tr>
                 </tbody>
             </table>
-             <cite>¹Okorie-Kanu, C. O., et al. (2014). / ²Garcia-Martinez, JD., et al. (2023).</cite>
+             <cite>¹Okorie-Kanu, C. O., et al. (2014). Normal haematological and serum biochemistry values of African hedgehog (Atelerix albiventris).<br>²Garcia-Martinez, JD., et al. (2023). Hematology, Biochemistry, and Protein Electrophoresis Reference Intervals of Western European Hedgehog (Erinaceus europaeus)...</cite>
 
 
             <h3>血液生化学検査</h3>
@@ -461,7 +454,7 @@
                     </tr>
                 </tbody>
             </table>
-            <cite>¹Okorie-Kanu, C. O., et al. (2014). / ²Garcia-Martinez, JD., et al. (2023).</cite>
+            <cite>¹Okorie-Kanu, C. O., et al. (2014). / ²Garcia-Martinez, JD., et al. (2023).<br>血糖値の参考値はSato R, et al. (2024)の報告も参照。</cite>
         </section>
 
         <section id="urinalysis">
@@ -505,6 +498,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="citation-note">
+                <strong>引用元:</strong> ハリネズミに特化した尿検査の包括的な基準値データは限られています。上記の解釈は、一般的な小動物の獣医臨床病理学の原則に基づいており、複数のエキゾチックアニマル関連の教科書や文献で述べられている一般的なアプローチを反映したものです。
+            </div>
         </section>
     </main>
 
@@ -513,19 +509,22 @@
             const menuToggle = document.getElementById('menu-toggle');
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.getElementById('main-content');
-            const navLinks = document.querySelectorAll('.sidebar nav a');
+            const navLinks = document.querySelectorAll('.nav-link');
 
             // --- Mobile Menu Toggle ---
             menuToggle.addEventListener('click', function() {
                 sidebar.classList.toggle('active');
             });
 
-            // --- Close sidebar when clicking on content ---
-            mainContent.addEventListener('click', function() {
+            // --- Close sidebar when clicking on content or a link ---
+            function closeSidebar() {
                 if (sidebar.classList.contains('active')) {
                     sidebar.classList.remove('active');
                 }
-            });
+            }
+
+            mainContent.addEventListener('click', closeSidebar);
+            navLinks.forEach(link => link.addEventListener('click', closeSidebar));
             
             // --- Smooth scrolling for nav links ---
             navLinks.forEach(link => {
@@ -534,40 +533,45 @@
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                     if (window.innerWidth <= 992 && sidebar.classList.contains('active')) {
-                        sidebar.classList.remove('active');
+                        const headerOffset = 20; 
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
                     }
                 });
             });
 
             // --- Active link highlighting on scroll ---
-            const sections = document.querySelectorAll('section');
-            const observer = new IntersectionObserver(entries => {
+            const sections = document.querySelectorAll('section, header#main-header');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -80% 0px',
+                threshold: 0
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('active');
-                            }
-                        });
+                        let targetId = entry.target.id;
+                        if(targetId === 'main-header') {
+                            targetId = 'introduction';
+                        }
+                        const navLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        if (navLink) {
+                            navLink.classList.add('active');
+                        }
                     }
                 });
-            }, { rootMargin: '-30% 0px -70% 0px' });
+            }, observerOptions);
 
             sections.forEach(section => {
                 observer.observe(section);
             });
-            // Also observe the header
-             const header_observer = new IntersectionObserver(entries => {
-                 if (entries[0].isIntersecting) {
-                     navLinks.forEach(link => link.classList.remove('active'));
-                     document.querySelector('a[href="#introduction"]').classList.add('active');
-                 }
-            }, { threshold: 0.5 });
-            header_observer.observe(document.getElementById('main-header'));
         });
     </script>
 </body>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハリネズミの健康管理資料：糖尿病・栄養学・臨床検査</title>
+    <style>
+        :root {
+            --primary-color: #4a6a8a;
+            --secondary-color: #f0f4f8;
+            --text-color: #333;
+            --border-color: #d1d9e6;
+            --header-bg: #34495e;
+            --alert-bg: #fffbe6;
+            --alert-border: #ffe58f;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--header-bg);
+            color: #ecf0f1;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            padding-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            padding: 0 15px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .sidebar nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav li a {
+            display: block;
+            padding: 12px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar nav li a:hover,
+        .sidebar nav li a.active {
+            background-color: #4a6a8a;
+            border-left: 3px solid #3498db;
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 20px 40px;
+            width: calc(100% - 250px);
+        }
+
+        #main-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        #main-header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2, h3, h4 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        h2 { font-size: 1.8em; }
+        h3 { font-size: 1.5em; }
+        h4 { font-size: 1.2em; }
+
+        blockquote {
+            background-color: var(--secondary-color);
+            border-left: 5px solid var(--primary-color);
+            margin: 20px 0;
+            padding: 15px 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        blockquote p {
+            margin: 0;
+            font-style: italic;
+        }
+
+        cite {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .alert-box {
+            background-color: var(--alert-bg);
+            border: 1px solid var(--alert-border);
+            border-left: 5px solid #ffb300;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .alert-box h4 {
+            margin-top: 0;
+            color: #c58d00;
+            border-bottom: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: var(--header-bg);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 1001;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 1000;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+    <div class="sidebar" id="sidebar">
+        <h2>ハリネズミ健康管理資料</h2>
+        <nav>
+            <ul>
+                <li><a href="#introduction">はじめに</a></li>
+                <li><a href="#diabetes">1. 糖尿病</a></li>
+                <li><a href="#nutrition">2. 栄養学と食事療法</a></li>
+                <li><a href="#blood-test">3. 血液検査</a></li>
+                <li><a href="#urinalysis">4. 尿検査</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-content" id="main-content">
+        <header id="main-header">
+            <h1>ハリネズミの健康管理資料</h1>
+            <p>糖尿病・栄養学・臨床検査に関する獣医学的情報のまとめ</p>
+        </header>
+
+        <section id="introduction">
+            <h2>はじめに</h2>
+            <p>この資料は、ハリネズミの飼育者および獣医療関係者向けに、糖尿病、栄養学、主要な臨床検査（血液検査・尿検査）に関する学術的・専門的情報をまとめたものです。</p>
+            <p>各項目には可能な限り論文や専門機関の報告に基づく情報を記載し、引用元を明示しています。</p>
+            <div class="alert-box">
+                <h4>【極めて重要な注意点】</h4>
+                <p>本資料に記載されている情報は、あくまで参考情報であり、個々のハリネズミの診断や治療に代わるものではありません。愛するハリネズミの健康に関するいかなる判断や治療も、必ず専門の獣医師との相談の上で行ってください。</p>
+            </div>
+        </section>
+
+        <section id="diabetes">
+            <h2>1. ハリネズミの糖尿病</h2>
+            <p>ハリネズミ、特にペットのヨツユビハリネズミにおいて、高血糖および糖尿病は比較的よく見られる代謝性疾患です。</p>
+
+            <h3>疫学 (Epidemiology)</h3>
+            <blockquote>
+                <p><strong>原文:</strong> "This study investigated 252 African pygmy hedgehogs and 579 blood test results collected over a three-year period from a veterinary hospital. The frequency of hyperglycemic samples among all blood tests was 48.1% (278/579). Twenty-eight hedgehogs were identified with severe hyperglycemia, defined as blood glucose levels of 180 mg/dL or higher. The prevalence of severe hyperglycemia in hedgehogs was 11.1% (28/252)."</p>
+                <p><strong>日本語訳:</strong> 「本研究では、ある動物病院から3年間にわたって収集された252頭のアフリカヨツユビハリネズミと579件の血液検査結果を調査した。全血液検査における高血糖サンプルの頻度は48.1%（278/579）であった。血中グルコース濃度が180 mg/dL以上と定義される重度の高血糖が認められたハリネズミは28頭であった。ハリネズミにおける重度の高血糖の有病率は11.1%（28/252）であった。」</p>
+                <cite>Sato R, Sakai H, Asano K. Hyperglycemia in Pet African Pygmy Hedgehogs (Atelerix albiventris): Prevalence, Clinical Characteristics, and Prognostic Indicators of Severe Hyperglycemia. Animals (Basel). 2024 May 15;14(10):1419.</cite>
+            </blockquote>
+
+            <h3>病態および臨床兆候 (Pathophysiology and Clinical Signs)</h3>
+             <blockquote>
+                <p><strong>原文:</strong> "The most common clinical signs in these hedgehogs were anorexia and decreased activity."</p>
+                <p><strong>日本語訳:</strong> 「これらの（重度の高血糖の）ハリネズミで最も一般的な臨床兆候は、食欲不振と活動性の低下であった。」</p>
+                <cite>Sato R, et al. (2024).</cite>
+            </blockquote>
+             <p>その他、多飲多尿、体重減少なども見られることがあります。また、肝リピドーシス（脂肪肝）を併発することもあります。</p>
+
+            <h3>経過 (Prognosis)</h3>
+             <blockquote>
+                <p><strong>原文:</strong> "The mortality rate among these hedgehogs was 53.6% (15/28). Mortality in hedgehogs with severe hyperglycemia was significantly associated with the severity of anorexia on the day severe hyperglycemia was first identified. Additionally, recovery from severe hyperglycemia on the next blood test was associated with a favorable prognosis."</p>
+                <p><strong>日本語訳:</strong> 「これらの（重度の高血糖の）ハリネズミの死亡率は53.6%（15/28）であった。重度の高血糖を持つハリネズミの死亡率は、重度の高血糖が最初に確認された日の食欲不振の重症度と有意に関連していた。さらに、次回の血液検査で重度の高血糖から回復したことは、良好な予後と関連していた。」</p>
+                <cite>Sato R, et al. (2024).</cite>
+            </blockquote>
+
+            <h3>治療方法 (Treatment)</h3>
+            <p>治療はインスリン投与による血糖コントロールが中心となりますが、ハリネズミに特化した確立されたプロトコルはまだありません。食事療法も重要な役割を果たします。</p>
+            <blockquote>
+                <p><strong>原文:</strong> "This article will discuss a case of diabetes mellitus in an African pygmy hedgehog, from the clinical signs that prompted veterinary attention to the successful management of this case with twice daily insulin injections."</p>
+                <p><strong>日本語訳:</strong> 「この記事では、アフリカヨツユビハリネズミの糖尿病の症例について、獣医療の受診を促した臨床兆候から、1日2回のインスリン注射による管理の成功までを論じる。」</p>
+                <cite>Vile, J. (2023). Diabetes mellitus in African pygmy hedgehogs. VNJ, 38(5), pp. 32-35. British Veterinary Nursing Association.</cite>
+            </blockquote>
+        </section>
+
+        <section id="nutrition">
+            <h2>2. 栄養学と食事療法</h2>
+            <p>糖尿病を含む代謝性疾患の管理において、適切な食事は極めて重要です。</p>
+
+            <h3>基本的な栄養要求量</h3>
+            <blockquote>
+                <p><strong>原文:</strong> "Nutritionally, hedgehogs are considered insectivores. They require a diet high in protein and fiber and low in fat. The ideal diet for a hedgehog would be most similar to the nutritional content of insects. A dry matter basis of >30% protein, 10%–20% fat, and high fiber is recommended."</p>
+                <p><strong>日本語訳:</strong> 「栄養学的に、ハリネズミは食虫動物と見なされる。彼らは高タンパク、高繊維、低脂肪の食事を必要とする。ハリネズミにとって理想的な食事は、昆虫の栄養成分に最も近いものだろう。乾燥重量比でタンパク質30%以上、脂肪10%〜20%、そして高繊維質が推奨される。」</p>
+                <cite>D'Agostino, J. (2023). Management of Hedgehogs. In Merck Veterinary Manual.</cite>
+            </blockquote>
+
+            <h3>食事内容の指針</h3>
+            <h4>主食</h4>
+            <p>高品質なハリネズミ専用フード、または高タンパク・低脂肪のキャットフードが基本となります。製品を選ぶ際は、成分表示をよく確認しましょう。</p>
+            
+            <h4>副食と避けるべき食品</h4>
+            <ul>
+                <li><strong>推奨される副食:</strong> ガットローディングされた昆虫（ミルワーム、コオロギなど）、少量の固ゆで卵や調理された鶏肉、ごく少量の低デンプン野菜。</li>
+                <li><strong>避けるべき食品:</strong> デンプン質の多い野菜（イモ類、コーン）、糖分の多い果物、ドライフルーツ、ナッツ類、パン、乳製品。これらは血糖値を急激に上昇させるリスクがあります。</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>栄養素/食事項目</th>
+                        <th>推奨事項と注意点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>主食</strong></td>
+                        <td>高タンパク(>30%)・低脂肪(<20%)・高繊維の専用フードまたはキャットフード。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>タンパク質</strong></td>
+                        <td>動物性タンパク質（昆虫、鶏肉など）を主源とする。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>脂肪</strong></td>
+                        <td>10%～20%が目安。肥満を避けるため過剰摂取に注意。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>繊維質</strong></td>
+                        <td>糖の吸収を緩やかにするため重要。</td>
+                    </tr>
+                     <tr>
+                        <td><strong>糖質・炭水化物</strong></td>
+                        <td>血糖値を上げるため、糖分の多い果物やデンプン質の野菜は厳格に避ける。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="blood-test">
+            <h2>3. 血液検査</h2>
+            <p>血液検査は、全身の健康状態や内臓機能を知るための重要な診断ツールです。</p>
+            
+            <div class="alert-box">
+                <h4>参考基準値に関する注意</h4>
+                <p>ここに記載する基準値は複数の文献からの抜粋であり、あくまで参考です。検査機関、測定方法、個体差により数値は変動します。必ず獣医師による総合的な判断が必要です。</p>
+            </div>
+
+            <h3>全血球計算 (CBC)</h3>
+            <p>貧血や感染、炎症の有無などを評価します。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>検査項目</th>
+                        <th>略語</th>
+                        <th>診断的意義</th>
+                        <th>参考基準値 (アフリカヨツユビ)¹</th>
+                        <th>参考基準値 (ヨーロッパ)²</th>
+                        <th>単位</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>白血球数</td>
+                        <td>WBC</td>
+                        <td>感染、炎症、腫瘍の指標</td>
+                        <td>15.04 (平均)</td>
+                        <td>2.5 – 15.7</td>
+                        <td>x 10³/µL</td>
+                    </tr>
+                    <tr>
+                        <td>赤血球数</td>
+                        <td>RBC</td>
+                        <td>貧血、脱水の指標</td>
+                         <td>5.01 (平均)</td>
+                        <td>4.1 – 10.2</td>
+                        <td>x 10⁶/µL</td>
+                    </tr>
+                     <tr>
+                        <td>ヘマトクリット値</td>
+                        <td>HCT</td>
+                        <td>貧血、脱水の指標</td>
+                         <td>41.95 (平均)</td>
+                        <td>19.4 – 41.1</td>
+                        <td>%</td>
+                    </tr>
+                     <tr>
+                        <td>血小板数</td>
+                        <td>PLT</td>
+                        <td>血液凝固能力の指標</td>
+                         <td>N/A</td>
+                        <td>31.3 - 567.1</td>
+                        <td>x 10³/µL</td>
+                    </tr>
+                </tbody>
+            </table>
+             <cite>¹Okorie-Kanu, C. O., et al. (2014). / ²Garcia-Martinez, JD., et al. (2023).</cite>
+
+
+            <h3>血液生化学検査</h3>
+            <p>内臓（特に腎臓や肝臓）の機能を評価します。</p>
+             <table>
+                <thead>
+                    <tr>
+                        <th>検査項目</th>
+                        <th>略語</th>
+                        <th>診断的意義</th>
+                        <th>参考基準値 (アフリカヨツユビ)¹</th>
+                        <th>参考基準値 (ヨーロッパ)²</th>
+                        <th>単位</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" style="background-color:#f0f4f8; font-weight:bold;">腎機能</td>
+                    </tr>
+                    <tr>
+                        <td>尿素窒素</td>
+                        <td>BUN</td>
+                        <td>腎機能の指標。腎不全で上昇。</td>
+                        <td>47.13 (平均)</td>
+                        <td>N/A</td>
+                        <td>mg/dL</td>
+                    </tr>
+                    <tr>
+                        <td>クレアチニン</td>
+                        <td>CREA</td>
+                        <td>腎機能の指標。腎不全で上昇。</td>
+                        <td>0.67 (平均)</td>
+                        <td>0.2 – 0.9</td>
+                        <td>mg/dL</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="background-color:#f0f4f8; font-weight:bold;">肝・胆道系機能</td>
+                    </tr>
+                     <tr>
+                        <td>アラニンアミノトランスフェラーゼ</td>
+                        <td>ALT</td>
+                        <td>肝細胞の損傷で上昇。</td>
+                        <td>22.80 (平均)</td>
+                        <td>39.8 – 174.5</td>
+                        <td>U/L</td>
+                    </tr>
+                     <tr>
+                        <td>アスパラギン酸アミノトランスフェラーゼ</td>
+                        <td>AST</td>
+                        <td>肝臓、筋肉の損傷で上昇。</td>
+                        <td>33.52 (平均)</td>
+                        <td>35.8 – 142.3</td>
+                        <td>U/L</td>
+                    </tr>
+                     <tr>
+                        <td>アルカリフォスファターゼ</td>
+                        <td>ALP</td>
+                        <td>胆汁うっ滞、骨の病気で上昇。</td>
+                        <td>22.43 (平均)</td>
+                        <td>11.2 – 104.5</td>
+                        <td>U/L</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="background-color:#f0f4f8; font-weight:bold;">その他</td>
+                    </tr>
+                    <tr>
+                        <td>グルコース（血糖値）</td>
+                        <td>GLU</td>
+                        <td>高値が持続すれば糖尿病を疑う。</td>
+                        <td><strong>86.05 (平均)</strong></td>
+                        <td><strong>73.9 – 140.5</strong></td>
+                        <td><strong>mg/dL</strong></td>
+                    </tr>
+                     <tr>
+                        <td>総タンパク</td>
+                        <td>TP</td>
+                        <td>栄養状態、肝・腎機能、脱水の指標。</td>
+                        <td>5.98 (平均)</td>
+                        <td>4.8 – 7.1</td>
+                        <td>g/dL</td>
+                    </tr>
+                     <tr>
+                        <td>カルシウム</td>
+                        <td>Ca</td>
+                        <td>腎不全、腫瘍、栄養疾患で変動。</td>
+                        <td>9.68 (平均)</td>
+                        <td>8.8 – 12.0</td>
+                        <td>mg/dL</td>
+                    </tr>
+                </tbody>
+            </table>
+            <cite>¹Okorie-Kanu, C. O., et al. (2014). / ²Garcia-Martinez, JD., et al. (2023).</cite>
+        </section>
+
+        <section id="urinalysis">
+            <h2>4. 尿検査</h2>
+            <p>腎臓や泌尿器（膀胱、尿道）の病気の発見に役立ちます。</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>検査項目</th>
+                        <th>診断的意義と参考基準</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>尿比重 (USG)</strong></td>
+                        <td>腎臓の尿濃縮能力を評価。腎不全では低下（薄い尿に）。参考値は1.015 - 1.050程度とされるが確立された範囲はない。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿pH</strong></td>
+                        <td>食餌や感染症で変動。中性～弱アルカリ性（7.0 - 8.5程度）が多い。</td>
+                    </tr>
+                     <tr>
+                        <td><strong>尿タンパク (PRO)</strong></td>
+                        <td>正常では陰性(-)。持続的な陽性は腎疾患や尿路の炎症を示唆。</td>
+                    </tr>
+                     <tr>
+                        <td><strong>尿糖 (GLU)</strong></td>
+                        <td>正常では陰性(-)。陽性は糖尿病を強く示唆。</td>
+                    </tr>
+                     <tr>
+                        <td><strong>ケトン体 (KET)</strong></td>
+                        <td>正常では陰性(-)。陽性は重度の糖尿病（糖尿病性ケトアシドーシス）を示唆。</td>
+                    </tr>
+                     <tr>
+                        <td><strong>尿潜血 (BLD)</strong></td>
+                        <td>正常では陰性(-)。陽性は膀胱炎、結石、腫瘍などによる出血を示唆。</td>
+                    </tr>
+                     <tr>
+                        <td><strong>尿沈渣（顕微鏡検査）</strong></td>
+                        <td>赤血球、白血球、細菌、円柱などが多数見られる場合は、それぞれ出血、感染、腎臓病などを示唆する。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const navLinks = document.querySelectorAll('.sidebar nav a');
+
+            // --- Mobile Menu Toggle ---
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+
+            // --- Close sidebar when clicking on content ---
+            mainContent.addEventListener('click', function() {
+                if (sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+            
+            // --- Smooth scrolling for nav links ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                     if (window.innerWidth <= 992 && sidebar.classList.contains('active')) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Active link highlighting on scroll ---
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            // Also observe the header
+             const header_observer = new IntersectionObserver(entries => {
+                 if (entries[0].isIntersecting) {
+                     navLinks.forEach(link => link.classList.remove('active'));
+                     document.querySelector('a[href="#introduction"]').classList.add('active');
+                 }
+            }, { threshold: 0.5 });
+            header_observer.observe(document.getElementById('main-header'));
+        });
+    </script>
+</body>
+</html>
